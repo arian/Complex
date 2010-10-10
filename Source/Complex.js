@@ -19,16 +19,42 @@ provides:
 
 var Complex = this.Complex = new Type('Complex', function(real, im){
 
-	this.real = +Number.from(real);
-	this.im = +Number.from(im);
+	if (arguments.length == 1){
+		var object = real;
+		if (instanceOf(object, Complex)){
+			real = object.real;
+			im = object.im;
+		}
+		var type = typeOf(object);
+		if (type == 'array'){
+			real = object[0];
+			im = object[1];
+		}
+		if (type == 'string'){
+			var match = object.match(/(\d+)?([\+-]\d+)[ij]/);
+			if (match){
+				real = match[1];
+				im = match[2];
+			}
+		}
+	}
+
+	this.real = Number.from(real);
+	this.im = Number.from(im);
 
 });
 
-Complex.from = function(obj){
-	if (instanceOf(obj, Complex)) return obj;
-	var type = typeOf(obj);
-	if (type == 'array') return new Complex(obj[0], obj[1]);
-	return new Complex(obj);
+Complex.from = function(object){
+	return new Complex(object);
+};
+
+Complex.fromPolar = function(r, phi){
+	if (typeOf(r) == 'string'){
+		var parts = r.split(' ');
+		r = parts[0];
+		phi = parts[1];
+	}
+	return new Complex(r * Math.cos(phi), r * Math.sin(phi));
 };
 
 Complex.i = new Complex(0, 1);
@@ -85,12 +111,17 @@ Complex.implement({
 		return this;
 	},
 
+	sqrt: function(){
+		return Complex.fromPolar(Math.sqrt(this.magnitude()), this.angle() / 2);
+	},
+
 	clone: function(){
 		return new Complex(this.real, this.im);
 	},
 
-	toString: function(){
-		return this.real + '+' + this.im + 'i';
+	toString: function(polar){
+		if (polar) return this.magnitude() + ' ' + this.angle();
+		return this.real + (this.im < 0 ? '-' : '+') + Math.abs(this.im) + 'i';
 	}
 
 });
