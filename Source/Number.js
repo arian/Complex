@@ -1,16 +1,13 @@
 /*
 ---
+name: Number
 description: Provides a way to use Complex Numbers in JavaScript
 
 license: MIT-style
-
-authors:
-  - Arian Stolwijk
+author: Arian Stolwijk
 
 requires: [Core/Number, Complex]
-
-provides:
-  - Number
+provides: Number
 
 ...
 */
@@ -46,3 +43,12 @@ Number.prototype.sqrt = function(){
 
 })(Number.prototype.sqrt);
 
+
+// Overwrite Number from to get the real part of complex numbers
+(function(from){
+
+Number.from = function(number){
+	return (instanceOf(number, Complex)) ? number.real : from(number);
+};
+
+})(Number.from);

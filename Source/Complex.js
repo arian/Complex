@@ -1,16 +1,13 @@
 /*
 ---
+name: Complex
 description: Provides a way to use Complex Numbers in JavaScript
 
 license: MIT-style
-
-authors:
-  - Arian Stolwijk
+author: Arian Stolwijk
 
 requires: [Core/Core, Core/Number]
-
-provides:
-  - Complex
+provides: Complex
 
 ...
 */
