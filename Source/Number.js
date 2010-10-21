@@ -20,17 +20,17 @@ Number.precision = 1e-6;
 (function(){
 
 var methods = {};
-['multiply', 'devide', 'add', 'substract', 'power'].each(function(method){
+['multiply', 'devide', 'add', 'substract', 'pow', 'sqrt', 'log', 'exp'].each(function(method){
 	methods[method] = function(number){
-		return Complex.from(this)[method](number);
+		var ret = Complex.from(this)[method](number);
+		if (ret.im == 0) return ret.real;
+		return ret;
 	};
 });
 
-Object.append(methods, {
-	toComplex: function(){
-		return Complex.from(this);
-	}
-});
+methods.toComplex = function(){
+	return Complex.from(this);
+};
 
 Number.implement(methods);
 
