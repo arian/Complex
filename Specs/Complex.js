@@ -53,6 +53,14 @@ describe('Complex', function(){
 		expect(n.toString()).toEqual('5+8i');
 	});
 
+	it('should z^n, where z is complex and n is real', function(){
+		expect(new Complex(1, 2).pow(2).toPrecision(1) + '').toEqual('-3+4i');
+	});
+
+	it('should z^w, where z and w are complex', function(){
+		expect(new Complex(1, 2).pow(new Complex(3, 4)).toPrecision(10) + '').toEqual('0.1290095941+0.03392409291i');
+	});
+
 	it('should take the square root of the complex number', function(){
 		var n = new Complex('1+4i').sqrt();
 		expect(n.toString()).toEqual('1.6004851804402407+1.2496210676876531i');

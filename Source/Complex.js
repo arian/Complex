@@ -62,6 +62,20 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 		return this;
 	},
 
+	toPrecision: function(k){
+		return this.fromRect(
+			this.real.toPrecision(k),
+			this.im.toPrecision(k)
+		);
+	},
+
+	toFixed: function(k){
+		return this.fromRect(
+			this.real.toFixed(k),
+			this.im.toFixed(k)
+		);
+	},
+
 	magnitude: function(){
 		return Math.sqrt(this.real * this.real + this.im * this.im);
 	},
@@ -103,13 +117,10 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 		return this;
 	},
 
-	power: function(n){
-		var r = this.magnitude(),
-			phi = this.angle();
-		return this.fromRect(
-			Math.pow(r, n) * Math.cos(n * phi),
-			Math.pow(r, n) * Math.sin(n * phi)
-		);
+	pow: function(n){
+		n = Complex.from(n);
+		var result = n.multiply(this.clone().log()).exp(); // z^w = e^(w*log(z))
+		return this.fromRect(result.real, result.im);
 	},
 
 	sqrt: function(){
