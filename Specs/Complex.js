@@ -11,26 +11,10 @@ describe('Complex', function(){
 		expect(new Complex('3+4i').toString()).toEqual('3+4i');
 		expect(new Complex('3-4i').toString()).toEqual('3-4i');
 		expect(new Complex('3+4j').toString()).toEqual('3+4i');
-		expect(new Complex('5').toString()).toEqual('5+0i');
-	});
-
-	it('should add two complex numbers', function(){
-		var n = new Complex(1, 2).add('4+6i');
-		expect(n.toString()).toEqual('5+8i');
-	});
-
-	it('should multiply a complex number', function(){
-		var n = new Complex(1, 4).multiply(3);
-		expect(n.toString()).toEqual('3+12i');
-	});
-
-	it('should multiply two complex numbers', function(){
-		var n = new Complex(1, 4).multiply('3+2i');
-	});
-
-	it('should take the square root of the complex number', function(){
-		var n = new Complex('1+4i').sqrt();
-		expect(n.toString()).toEqual('1.6004851804402407+1.2496210676876531i');
+		expect(new Complex('5').toString()).toEqual('5');
+		expect(new Complex('1+i').toString()).toEqual('1+i');
+		expect(new Complex(1, -1).toString()).toEqual('1-i');
+		expect(new Complex(0, 0).toString()).toEqual('0');
 	});
 
 	it('should calculate the magnitude of the number', function(){
@@ -44,6 +28,42 @@ describe('Complex', function(){
 
 	it('should return the conjungate', function(){
 		expect(new Complex(1, 3).conjungate().toString()).toEqual('1-3i');
-	})
+	});
+
+	it('should multiply a complex number', function(){
+		var n = new Complex(1, 4).multiply(3);
+		expect(n.toString()).toEqual('3+12i');
+	});
+
+	it('should multiply two complex numbers', function(){
+		var n = new Complex(1, 4).multiply('3+2i');
+		expect(n.toString()).toEqual('-5+14i');
+	});
+
+	it('should devide a complex number by a real number', function(){
+		expect(new Complex('4+16i').devide(4) + '').toEqual('1+4i');
+	});
+
+	it('should devide a complex number by another number', function(){
+		expect(new Complex('2+8i').devide(new Complex(1, 2)) + '').toEqual('3.6+0.8i');
+	});
+
+	it('should add two complex numbers', function(){
+		var n = new Complex(1, 2).add('4+6i');
+		expect(n.toString()).toEqual('5+8i');
+	});
+
+	it('should take the square root of the complex number', function(){
+		var n = new Complex('1+4i').sqrt();
+		expect(n.toString()).toEqual('1.6004851804402407+1.2496210676876531i');
+	});
+
+	it('it should take the natural logarithm', function(){
+		expect(new Complex('4+3i').log() + '').toEqual('1.6094379124341003+0.6435011087932844i');
+	});
+
+	it('it should return the exponential', function(){
+		expect(new Complex('4+3i').exp() + '').toEqual('-54.051758861078156+7.704891372731154i');
+	});
 
 });

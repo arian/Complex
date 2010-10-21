@@ -31,10 +31,11 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 			im = object[1];
 		}
 		if (type == 'string'){
-			var match = object.match(/(\d+)?([\+-]\d+)[ij]/);
+			if (object == 'i') object = '0+1i';
+			var match = object.match(/(\d+)?([\+-]\d*)[ij]/);
 			if (match){
 				real = match[1];
-				im = match[2];
+				im = (match[2] == '+' || match[2] == '-') ? match[2] + '1' : match[2];
 			}
 		}
 	}
@@ -42,24 +43,24 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 	this.real = Number.from(real);
 	this.im = Number.from(im);
 
-});
+}).implement({
 
-Complex.from = function(object){
-	return new Complex(object);
-};
+	fromPolar: function(r, phi){
+		if (typeOf(r) == 'string'){
+			var parts = r.split(' ');
+			r = parts[0];
+			phi = parts[1];
+		}
+		this.real = r * Math.cos(phi);
+		this.im = r * Math.sin(phi);
+		return this;
+	},
 
-Complex.fromPolar = function(r, phi){
-	if (typeOf(r) == 'string'){
-		var parts = r.split(' ');
-		r = parts[0];
-		phi = parts[1];
-	}
-	return new Complex(r * Math.cos(phi), r * Math.sin(phi));
-};
-
-Complex.i = new Complex(0, 1);
-
-Complex.implement({
+	fromRect: function(a, b){
+		this.real = a;
+		this.im = b;
+		return this;
+	},
 
 	magnitude: function(){
 		return Math.sqrt(this.real * this.real + this.im * this.im);
@@ -75,20 +76,19 @@ Complex.implement({
 
 	multiply: function(number){
 		number = Complex.from(number);
-		var real = number.real * this.real - number.im * this.im,
-		im = this.im * number.real + number.im * this.real;
-		this.real = real;
-		this.im = im;
-		return this;
+		return this.fromRect(
+			number.real * this.real - number.im * this.im,
+			this.im * number.real + number.im * this.real
+		);
 	},
 
 	devide: function(number){
 		number = Complex.from(number);
-		var real = (this.real * number.real + this.im * number.im) / (Math.pow(number.real, 2) + Math.pow(number.im, 2));
-		var im = (this.im * number.real - this.real*number.im) / (Math.pow(number.real, 2) + Math.pow(number.im, 2));
-		this.real = real;
-		this.im = im;
-		return this;
+		var devider = (Math.pow(number.real, 2) + Math.pow(number.im, 2));
+		return this.fromRect(
+			(this.real * number.real + this.im * number.im) / devider,
+			(this.im * number.real - this.real * number.im) / devider
+		);
 	},
 
 	add: function(number){
@@ -106,13 +106,31 @@ Complex.implement({
 	power: function(n){
 		var r = this.magnitude(),
 			phi = this.angle();
-		this.real = Math.pow(r, n) * Math.cos(n * phi);
-		this.im = Math.pow(r, n) * Math.sin(n * phi);
-		return this;
+		return this.fromRect(
+			Math.pow(r, n) * Math.cos(n * phi),
+			Math.pow(r, n) * Math.sin(n * phi)
+		);
 	},
 
 	sqrt: function(){
-		return Complex.fromPolar(Math.sqrt(this.magnitude()), this.angle() / 2);
+		return this.fromPolar(
+			Math.sqrt(this.magnitude()),
+			this.angle() / 2
+		);
+	},
+
+	log: function(){
+		return this.fromRect(
+			Math.log(this.magnitude()),
+			this.angle()
+		);
+	},
+
+	exp: function(){
+		return new Complex.fromPolar(
+			Math.exp(this.real),
+			this.im
+		);
 	},
 
 	clone: function(){
@@ -121,10 +139,32 @@ Complex.implement({
 
 	toString: function(polar){
 		if (polar) return this.magnitude() + ' ' + this.angle();
-		return this.real + (this.im < 0 ? '-' : '+') + Math.abs(this.im) + 'i';
+
+		var ret = '';
+		if (!this.real == 0) ret += this.real;
+		if (!this.im == 0){
+			ret += this.im < 0 ? '-' : '+';
+			var absIm = Math.abs(this.im);
+			if (absIm != 1) ret += absIm;
+			ret += 'i';
+		}
+		return ret || '0';
 	}
 
 });
+
+
+Complex.from = function(a, b){
+	if (arguments.length == 1) return new Complex(a);
+	return new Complex(a, b);
+};
+
+Complex.fromPolar = function(r, phi){
+	return new Complex(1, 1).fromPolar(r, phi);
+};
+
+Complex.i = new Complex(0, 1);
+
 
 })();
 
