@@ -34,7 +34,7 @@ Configuration.defaultPresets = {
 Configuration.sets = {
 
 	'base': {
-		path: '/',
+		path: '',
 		files: ['Complex', 'Number']
 	}
 
@@ -58,8 +58,7 @@ Configuration.source = {
 	'base': {
 		path: '../Source/',
 		files: [
-			'Complex',
-			'Number'
+			'Complex'
 		]
 	}
 
