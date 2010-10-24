@@ -85,3 +85,16 @@ describe('Complex', function(){
 	});
 
 });
+
+describe('String', function(){
+
+	it('should convert a string into a complex number object', function(){
+		var z = '1+4i'.toComplex();
+		expect(z.real).toEqual(1);
+		expect(z.im).toEqual(4);
+	});
+
+});
+
+
+

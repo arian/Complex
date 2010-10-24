@@ -208,5 +208,10 @@ Number.from = function(number){
 	return (instanceOf(number, Complex)) ? number.real : from(number);
 };
 
+// Implement a toComplex function for strings
+String.implement('toComplex', function(){
+	return new Complex(this);
+});
+
 })();
 
