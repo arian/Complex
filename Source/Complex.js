@@ -145,9 +145,9 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 		if (polar) return this.magnitude() + ' ' + this.angle();
 
 		var ret = '';
-		if (!this.real == 0) ret += this.real;
-		if (!this.im == 0){
-			ret += this.im < 0 ? '-' : '+';
+		if (this.real) ret += this.real;
+		if (this.real && this.im || this.im < 0) ret += this.im < 0 ? '-' : '+';
+		if (this.im){
 			var absIm = Math.abs(this.im);
 			if (absIm != 1) ret += absIm;
 			ret += 'i';

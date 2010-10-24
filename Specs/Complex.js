@@ -15,6 +15,8 @@ describe('Complex', function(){
 		expect(new Complex('1+i').toString()).toEqual('1+i');
 		expect(new Complex(1, -1).toString()).toEqual('1-i');
 		expect(new Complex(0, 0).toString()).toEqual('0');
+		expect(new Complex(0, 2).toString()).toEqual('2i');
+		expect(new Complex(0, -2).toString()).toEqual('-2i');
 	});
 
 	it('should calculate the magnitude of the number', function(){
