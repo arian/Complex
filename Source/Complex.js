@@ -88,7 +88,8 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 	},
 
 	conjungate: function(){
-		return new Complex(this.real, -this.im);
+		this.im = -this.im;
+		return this;
 	},
 
 	multiply: function(number){
