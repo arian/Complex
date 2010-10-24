@@ -159,7 +159,15 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 		return ret || '0';
 	}
 
+}).alias({
+	abs: 'magnitude',
+	arg: 'angle',
+	conj: 'conjungate',
+	mult: 'multiply',
+	dev: 'devide',
+	sub: 'substract'
 });
+
 
 
 Complex.from = function(a, b){

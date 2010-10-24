@@ -19,20 +19,23 @@ describe('Complex', function(){
 
 	it('should calculate the magnitude of the number', function(){
 		expect(new Complex(3, 4).magnitude()).toEqual(5);
+		expect(new Complex(3, 4).abs()).toEqual(5);
 	});
 
 	it('should calculate the angle between the real and the im vectors', function(){
 		expect(new Complex(1, 1).angle()).toEqual(Math.PI / 4);
 		expect(new Complex(1, 0.5 * Math.sqrt(4 / 3)).angle()).toEqual(Math.PI / 6);
+		expect(new Complex(1, 0.5 * Math.sqrt(4 / 3)).arg()).toEqual(Math.PI / 6);
 	});
 
 	it('should return the conjungate', function(){
 		expect(new Complex(1, 3).conjungate().toString()).toEqual('1-3i');
+		expect(new Complex(1, 3).conj().toString()).toEqual('1-3i');
 	});
 
 	it('should multiply a complex number', function(){
-		var n = new Complex(1, 4).multiply(3);
-		expect(n.toString()).toEqual('3+12i');
+		expect(new Complex(1, 4).multiply(3).toString()).toEqual('3+12i');
+		expect(new Complex(1, 4).mult(3).toString()).toEqual('3+12i');
 	});
 
 	it('should multiply two complex numbers', function(){
@@ -42,6 +45,7 @@ describe('Complex', function(){
 
 	it('should devide a complex number by a real number', function(){
 		expect(new Complex('4+16i').devide(4) + '').toEqual('1+4i');
+		expect(new Complex('4+16i').dev(4) + '').toEqual('1+4i');
 	});
 
 	it('should devide a complex number by another number', function(){
@@ -51,6 +55,12 @@ describe('Complex', function(){
 	it('should add two complex numbers', function(){
 		var n = new Complex(1, 2).add('4+6i');
 		expect(n.toString()).toEqual('5+8i');
+	});
+
+	it('should substract two complex numbers', function(){
+		var n = new Complex(5, 8);
+		expect(n.clone().substract('4+6i').toString()).toEqual('1+2i');
+		expect(n.clone().sub('4+6i').toString()).toEqual('1+2i');
 	});
 
 	it('should z^n, where z is complex and n is real', function(){
