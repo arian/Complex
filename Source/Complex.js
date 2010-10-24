@@ -16,29 +16,18 @@ provides: Complex
 
 var Complex = this.Complex = new Type('Complex', function(real, im){
 
-	if (arguments.length == 1){
-		var object = real;
-		if (instanceOf(object, Complex)){
-			real = object.real;
-			im = object.im;
-		}
-		var type = typeOf(object);
-		if (type == 'array'){
-			real = object[0];
-			im = object[1];
-		}
-		if (type == 'string'){
-			if (object == 'i') object = '0+1i';
-			var match = object.match(/(\d+)?([\+-]\d*)[ij]/);
-			if (match){
-				real = match[1];
-				im = (match[2] == '+' || match[2] == '-') ? match[2] + '1' : match[2];
-			}
-		}
+	var type = typeOf(real),
+		args = [real, im];
+
+	if (type == 'complex') args = [real.real, real.im];
+	else if (type == 'string'){
+		if (real == 'i') real = '0+1i';
+		var match = real.match(/(\d+)?([\+-]\d*)[ij]/);
+		if (match) args = [match[1], (match[2] == '+' || match[2] == '-') ? match[2] + '1' : match[2]];
 	}
 
-	this.real = Number.from(real);
-	this.im = Number.from(im);
+	this.real = Number.from(args[0]);
+	this.im = Number.from(args[1]);
 
 }).mirror(function(name){
 	var dontMirror = ['toString', 'fromPolar', 'fromRect', 'toPrecision', 'toFixed'];
@@ -177,7 +166,6 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 
 
 Complex.from = function(a, b){
-	if (arguments.length == 1) return new Complex(a);
 	return new Complex(a, b);
 };
 
