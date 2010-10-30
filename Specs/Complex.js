@@ -82,6 +82,12 @@ describe('Complex', function(){
 		expect(new Complex('4+3i').log() + '').toEqual('1.6094379124341003+0.6435011087932844i');
 	});
 
+	it('should take the natural logartithm with the second multiplicity', function(){
+		var n = new Complex(Math.E.pow(2)).log(2);
+		expect(n.real).toEqual(2);
+		expect(n.im).toEqual(4 * Math.PI);
+	});
+
 	it('it should return the exponential', function(){
 		expect(new Complex('4+3i').exp() + '').toEqual('-54.051758861078156+7.704891372731154i');
 	});
