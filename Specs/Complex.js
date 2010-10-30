@@ -41,8 +41,8 @@ describe('Complex', function(){
 	});
 
 	it('should multiply two complex numbers', function(){
-		var n = new Complex(1, 4).multiply('3+2i');
-		expect(n.toString()).toEqual('-5+14i');
+		var n = new Complex(1, 4).multiply('3+2i').toString();
+		expect(n).toEqual('-5+14i');
 	});
 
 	it('should devide a complex number by a real number', function(){
@@ -70,16 +70,21 @@ describe('Complex', function(){
 	});
 
 	it('should z^w, where z and w are complex', function(){
-		expect(new Complex(1, 2).pow(new Complex(3, 4)).toPrecision(10) + '').toEqual('0.1290095941+0.03392409291i');
+		var n = new Complex(1, 2).pow(new Complex(3, 4)).toPrecision(10).toString();
+		expect(n).toEqual('0.1290095941+0.03392409291i');
 	});
 
 	it('should take the square root of the complex number', function(){
-		var n = new Complex('1+4i').sqrt();
-		expect(n.toString()).toEqual('1.6004851804402407+1.2496210676876531i');
+		var n = new Complex('1+4i').sqrt().toPrecision(10).toString();
+		expect(n).toEqual('1.600485180+1.249621068i');
+
+		var m = new Complex(-5, 3).sqrt().toPrecision(10).toString();
+		expect(m).toEqual('0.6445742373+2.327117519i');
 	});
 
 	it('it should take the natural logarithm', function(){
-		expect(new Complex('4+3i').log() + '').toEqual('1.6094379124341003+0.6435011087932844i');
+		var z = new Complex('4+3i').log().toPrecision(10).toString();
+		expect(z).toEqual('1.609437912+0.6435011088i');
 	});
 
 	it('should take the natural logartithm with the second multiplicity', function(){
@@ -89,7 +94,8 @@ describe('Complex', function(){
 	});
 
 	it('it should return the exponential', function(){
-		expect(new Complex('4+3i').exp() + '').toEqual('-54.051758861078156+7.704891372731154i');
+		var z = new Complex('4+3i').exp().toPrecision(10).toString();
+		expect(z).toEqual('-54.05175886+7.704891373i');
 	});
 
 });

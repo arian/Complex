@@ -14,6 +14,18 @@ provides: Complex
 
 (function(){
 
+var implementMethodIntoNumber = function(name){
+
+	var dontMirror = ['toString', 'fromPolar', 'fromRect', 'toPrecision', 'toFixed'];
+	if (dontMirror.indexOf(name) == -1) Number.implement(name, function(){
+		var ret = new Complex(this);
+		ret = ret[name].apply(ret, arguments);
+		return (Type.isComplex(ret) && !ret.im) ? ret.real : ret;
+	});
+	return implementMethodIntoNumber;
+
+};
+
 var Complex = this.Complex = new Type('Complex', function(real, im){
 
 	var type = typeOf(real),
@@ -26,18 +38,10 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 		if (match) args = [match[1], (match[2] == '+' || match[2] == '-') ? match[2] + '1' : match[2]];
 	}
 
-	this.real = Number.from(args[0]);
-	this.im = Number.from(args[1]);
+	this.real = +args[0] || 0;
+	this.im = +args[1] || 0;
 
-}).mirror(function(name){
-
-	var dontMirror = ['toString', 'fromPolar', 'fromRect', 'toPrecision', 'toFixed'];
-	if (dontMirror.indexOf(name) != -1) Number.implement(name, function(number){
-		var ret = new Complex(this, 0)[name](number);
-		return (ret.im == 0) ? ret.real : ret;
-	});
-
-}).implement({
+}).mirror(implementMethodIntoNumber).implement({
 
 	fromPolar: function(r, phi){
 		if (typeOf(r) == 'string'){
@@ -119,9 +123,10 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 	},
 
 	sqrt: function(){
-		return this.fromPolar(
-			Math.sqrt(this.magnitude()),
-			this.angle() / 2
+		var abs = this.magnitude();
+		return this.fromRect(
+			Math.sqrt((abs + this.real) / 2),
+			Math.sqrt((abs - this.real) / 2)
 		);
 	},
 
@@ -182,17 +187,10 @@ Complex.extend({
 });
 
 
-var sqrt = Number.prototype.sqrt;
 Number.implement({
 
 	toComplex: function(){
 		return new Complex(this, 0);
-	},
-
-	// Replace sqrt method so it can handle negative values
-	sqrt: function(){
-		if (this < 0) return new Complex(0, Math.sqrt(-this));
-		return sqrt.call(this);
 	}
 
 });
