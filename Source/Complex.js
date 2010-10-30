@@ -123,11 +123,11 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 		);
 	},
 
-	log: function(n){
-		if (!n) n = 0;
+	log: function(k){
+		if (!k) k = 0;
 		return this.fromRect(
 			Math.log(this.magnitude()),
-			this.angle() + n * 2 * Math.PI
+			this.angle() + k * 2 * Math.PI
 		);
 	},
 
