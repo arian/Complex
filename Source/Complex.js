@@ -30,11 +30,13 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 	this.im = Number.from(args[1]);
 
 }).mirror(function(name){
+
 	var dontMirror = ['toString', 'fromPolar', 'fromRect', 'toPrecision', 'toFixed'];
 	if (dontMirror.indexOf(name) != -1) Number.implement(name, function(number){
 		var ret = new Complex(this, 0)[name](number);
 		return (ret.im == 0) ? ret.real : ret;
 	});
+
 }).implement({
 
 	fromPolar: function(r, phi){
@@ -165,37 +167,43 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 	sub: 'substract'
 });
 
+Complex.extend({
 
-Complex.from = function(a, b){
-	return new Complex(a, b);
-};
+	from: function(a, b){
+		return new Complex(a, b);
+	},
 
-Complex.fromPolar = function(r, phi){
-	return new Complex(1, 1).fromPolar(r, phi);
-};
+	fromPolar: function(r, phi){
+		return new Complex(1, 1).fromPolar(r, phi);
+	},
 
-Complex.i = new Complex(0, 1);
+	i: new Complex(0, 1)
+
+});
 
 
 var sqrt = Number.prototype.sqrt;
 Number.implement({
+
 	toComplex: function(){
 		return new Complex(this, 0);
 	},
+
 	// Replace sqrt method so it can handle negative values
 	sqrt: function(){
 		if (this < 0) return new Complex(0, Math.sqrt(-this));
 		return sqrt.call(this);
 	}
-});
 
+});
 
 
 // Overwrite Number from to get the real part of complex numbers
 var from = Number.from;
-Number.from = function(number){
+Number.implement('from', function(number){
 	return (instanceOf(number, Complex)) ? number.real : from(number);
-};
+});
+
 
 // Implement a toComplex function for strings
 String.implement('toComplex', function(){
@@ -203,4 +211,3 @@ String.implement('toComplex', function(){
 });
 
 })();
-
