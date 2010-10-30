@@ -15,11 +15,12 @@ describe('Number', function(){
 
 		(function(math){
 			for (var test in math){
-				var value = math[test];
+				(function(test, value){
 				it('should test the ' + value.title + ' method', function(){
 					var b = value.test[1];
 					expect(value.test[0][test](b)).toEqual(Math[test].apply(null, value.test));
 				});
+				})(test, math[test]);
 			}
 		})({
 			abs: { test: [-1], title: 'absolute' },
