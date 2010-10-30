@@ -75,11 +75,24 @@ describe('Complex', function(){
 	});
 
 	it('should take the square root of the complex number', function(){
-		var n = new Complex('1+4i').sqrt().toPrecision(10).toString();
-		expect(n).toEqual('1.600485180+1.249621068i');
+		var z = new Complex('1+4i').sqrt().toPrecision(10).toString();
+		expect(z).toEqual('1.600485180+1.249621068i');
+	});
 
-		var m = new Complex(-5, 3).sqrt().toPrecision(10).toString();
-		expect(m).toEqual('0.6445742373+2.327117519i');
+
+	it('should take the square root of the complex number with a negative real part', function(){
+		var z = new Complex(-3, 4).sqrt().toString();
+		expect(z).toEqual('1+2i');
+	});
+
+	it('should take the square root of a complex number with a negative imaginary part', function(){
+		var z = new Complex(3, -4).sqrt().toString();
+		expect(z).toEqual('2-i');
+	});
+
+	it('should take the square root of a complex number with both negative real and imaginary parts', function(){
+		var z = new Complex(-3, -4).sqrt().toString();
+		expect(z).toEqual('1-2i');
 	});
 
 	it('it should take the natural logarithm', function(){

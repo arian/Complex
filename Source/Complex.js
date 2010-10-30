@@ -123,10 +123,11 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 	},
 
 	sqrt: function(){
-		var abs = this.magnitude();
+		var abs = this.magnitude(),
+			sgn = this.im < 0 ? -1 : 1;
 		return this.fromRect(
 			Math.sqrt((abs + this.real) / 2),
-			Math.sqrt((abs - this.real) / 2)
+			sgn * Math.sqrt((abs - this.real) / 2)
 		);
 	},
 
