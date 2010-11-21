@@ -11,6 +11,18 @@ describe('Number', function(){
 		expect(Number.from(new Complex(2, 3))).toEqual(2);
 	});
 
+	describe('sinh, cosh, and tanh', function(){
+		it('should test the hyperbolic sine', function(){
+			expect(Math.sinh(2).round(7)).toEqual(3.6268604);
+		});
+		it('should test the hyperbolic cosine', function(){
+			expect(Math.cosh(2).round(7)).toEqual(3.7621957);
+		});
+		it('should test the hyperbolic tangent', function(){
+			expect(Math.tanh(2).round(7)).toEqual(0.9640276);
+		});
+	});
+
 	describe('should keep the old behaviour of Number methods', function(){
 
 		(function(math){
@@ -40,7 +52,7 @@ describe('Number', function(){
 			sqrt: { test: [4], title: 'square root' },
 			tan: { test: [0.3], title: 'tangent' }
 		});
-	
+
 
 	});
 

@@ -140,9 +140,32 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 	},
 
 	exp: function(){
-		return new Complex.fromPolar(
+		return this.fromPolar(
 			Math.exp(this.real),
 			this.im
+		);
+	},
+
+	sin: function(){
+		return this.fromRect(
+			Math.sin(this.real) * Math.cosh(this.im),
+			Math.cos(this.real) * Math.sinh(this.im)
+		);
+	},
+
+	cos: function(){
+		return this.fromRect(
+			Math.cos(this.real) * Math.cosh(this.im),
+			Math.sin(this.real) * Math.sinh(this.im) * -1
+		);
+	},
+
+	tan: function(){
+		var a = this.real, b = this.im,
+			divident = Math.cos(2 * a) + Math.cosh(2 * b);
+		return this.fromRect(
+			Math.sin(2 * a) / divident,
+			Math.sinh(2 * b) / divident
 		);
 	},
 
@@ -188,20 +211,28 @@ Complex.extend({
 });
 
 
-Number.implement({
-
-	toComplex: function(){
-		return new Complex(this, 0);
-	}
-
+Number.implement('toComplex', function(){
+	return new Complex(this, 0);
 });
+
+Math.sinh = function(x){
+	return (Math.pow(Math.E, x) - Math.pow(Math.E, -x)) / 2;
+};
+
+Math.cosh = function(x){
+	return (Math.pow(Math.E, x) + Math.pow(Math.E, -x)) / 2;
+};
+
+Math.tanh = function(x){
+	return (Math.pow(Math.E, 2 * x) - 1) / (Math.pow(Math.E, 2 * x) + 1);
+};
 
 
 // Overwrite Number from to get the real part of complex numbers
 var from = Number.from;
-Number.implement('from', function(number){
+Number.from = function(number){
 	return (instanceOf(number, Complex)) ? number.real : from(number);
-});
+};
 
 
 // Implement a toComplex function for strings

@@ -13,6 +13,7 @@ describe('Complex', function(){
 		expect(new Complex('3+4j').toString()).toEqual('3+4i');
 		expect(new Complex('5').toString()).toEqual('5');
 		expect(new Complex('1+i').toString()).toEqual('1+i');
+		expect(new Complex('i').toString()).toEqual('i');
 		expect(new Complex(1, -1).toString()).toEqual('1-i');
 		expect(new Complex(0, 0).toString()).toEqual('0');
 		expect(new Complex(0, 2).toString()).toEqual('2i');
@@ -109,6 +110,21 @@ describe('Complex', function(){
 	it('it should return the exponential', function(){
 		var z = new Complex('4+3i').exp().toPrecision(10).toString();
 		expect(z).toEqual('-54.05175886+7.704891373i');
+	});
+
+	it('should return the sine of the complex number', function(){
+		var z = new Complex(1, 2).sin().toPrecision(10).toString();
+		expect(z).toEqual('3.165778513+1.959601041i');
+	});
+
+	it('should return the cosine of the complex number', function(){
+		var z = new Complex(1, 2).cos().toPrecision(10).toString();
+		expect(z).toEqual('2.032723007-3.051897799i');
+	});
+
+	it('should return the tangent of the complex number', function(){
+		var z = new Complex(1, 2).tan().toPrecision(10).toString();
+		expect(z).toEqual('0.03381282608+1.014793616i');
 	});
 
 });
