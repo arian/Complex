@@ -218,6 +218,11 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 			ret += 'i';
 		}
 		return ret || '0';
+	},
+
+	equals: function(z){
+		z = new Complex(z);
+		return (z.real == this.real && z.im == this.im);
 	}
 
 }).alias({

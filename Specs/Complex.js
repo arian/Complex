@@ -146,6 +146,11 @@ describe('Complex', function(){
 		expect(z).toEqual('1.166736257-0.2434582012i');
 	});
 
+	it('should test the equals method', function(){
+		expect(new Complex(2, 3).equals(new Complex(2, 3))).toBeTruthy();
+		expect(new Complex(2, 3).equals(new Complex(2, 4))).toBeFalsy();
+		expect(new Complex(2, 3).equals(new Complex(1, 3))).toBeFalsy();
+	});
 
 });
 
