@@ -111,7 +111,7 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 		return this;
 	},
 
-	substract: function(number){
+	subtract: function(number){
 		this.add(Complex.from(number).multiply(-1));
 		return this;
 	},
@@ -170,7 +170,7 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 	conj: 'conjungate',
 	mult: 'multiply',
 	dev: 'devide',
-	sub: 'substract'
+	sub: 'subtract'
 });
 
 Complex.extend({

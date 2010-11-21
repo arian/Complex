@@ -59,9 +59,9 @@ describe('Complex', function(){
 		expect(n.toString()).toEqual('5+8i');
 	});
 
-	it('should substract two complex numbers', function(){
+	it('should subtract two complex numbers', function(){
 		var n = new Complex(5, 8);
-		expect(n.clone().substract('4+6i').toString()).toEqual('1+2i');
+		expect(n.clone().subtract('4+6i').toString()).toEqual('1+2i');
 		expect(n.clone().sub('4+6i').toString()).toEqual('1+2i');
 	});
 
