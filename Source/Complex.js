@@ -153,16 +153,18 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 	},
 
 	sin: function(){
+		var a = this.real, b = this.im;
 		return this.fromRect(
-			Math.sin(this.real) * Math.cosh(this.im),
-			Math.cos(this.real) * Math.sinh(this.im)
+			Math.sin(a) * Math.cosh(b),
+			Math.cos(a) * Math.sinh(b)
 		);
 	},
 
 	cos: function(){
+		var a = this.real, b = this.im;
 		return this.fromRect(
-			Math.cos(this.real) * Math.cosh(this.im),
-			Math.sin(this.real) * Math.sinh(this.im) * -1
+			Math.cos(a) * Math.cosh(b),
+			Math.sin(a) * Math.sinh(b) * -1
 		);
 	},
 
@@ -172,6 +174,31 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 		return this.fromRect(
 			Math.sin(2 * a) / divident,
 			Math.sinh(2 * b) / divident
+		);
+	},
+
+	sinh: function(){
+		var a = this.real, b = this.im;
+		return this.fromRect(
+			Math.sinh(a) * Math.cos(b),
+			Math.cosh(a) * Math.sin(b)
+		);
+	},
+
+	cosh: function(){
+		var a = this.real, b = this.im;
+		return this.fromRect(
+			Math.cosh(a) * Math.cos(b),
+			Math.sinh(a) * Math.sin(b)
+		);
+	},
+
+	tanh: function(){
+		var a = this.real, b = this.im,
+			divident = Math.cosh(2 * a) + Math.cos(2 * b);
+		return this.fromRect(
+			Math.sinh(2 * a) / divident,
+			Math.sin(2 * b) / divident
 		);
 	},
 

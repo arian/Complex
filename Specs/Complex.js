@@ -131,6 +131,22 @@ describe('Complex', function(){
 		expect(z).toEqual('0.03381282608+1.014793616i');
 	});
 
+	it('should return the hyperbolic sine of the complex number', function(){
+		var z = new Complex(1, 2).sinh().toPrecision(10).toString();
+		expect(z).toEqual('-0.4890562590+1.403119251i');
+	});
+
+	it('should return the cosine of the complex number', function(){
+		var z = new Complex(1, 2).cosh().toPrecision(10).toString();
+		expect(z).toEqual('-0.6421481247+1.068607421i');
+	});
+
+	it('should return the tangent of the complex number', function(){
+		var z = new Complex(1, 2).tanh().toPrecision(10).toString();
+		expect(z).toEqual('1.166736257-0.2434582012i');
+	});
+
+
 });
 
 describe('String', function(){
