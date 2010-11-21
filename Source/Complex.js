@@ -87,6 +87,12 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 		return this;
 	},
 
+	negate: function(){
+		this.im = -this.im;
+		this.real = -this.real;
+		return this;
+	},
+
 	multiply: function(number){
 		number = Complex.from(number);
 		return this.fromRect(
@@ -190,6 +196,7 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 }).alias({
 	abs: 'magnitude',
 	arg: 'angle',
+	phase: 'angle',
 	conj: 'conjungate',
 	mult: 'multiply',
 	dev: 'devide',
@@ -206,7 +213,9 @@ Complex.extend({
 		return new Complex(1, 1).fromPolar(r, phi);
 	},
 
-	i: new Complex(0, 1)
+	i: new Complex(0, 1),
+
+	one: new Complex(1, 0)
 
 });
 

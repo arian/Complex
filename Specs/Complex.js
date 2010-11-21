@@ -36,6 +36,10 @@ describe('Complex', function(){
 		expect(new Complex(1, 3).conj().toString()).toEqual('1-3i');
 	});
 
+	it('should negate the complex number', function(){
+		expect(new Complex(-7.1, 2.5).negate().toString()).toEqual('7.1-2.5i');
+	});
+
 	it('should multiply a complex number', function(){
 		expect(new Complex(1, 4).multiply(3).toString()).toEqual('3+12i');
 		expect(new Complex(1, 4).mult(3).toString()).toEqual('3+12i');
