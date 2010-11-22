@@ -43,6 +43,12 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 
 }).mirror(implementMethodIntoNumber).implement({
 
+	fromRect: function(a, b){
+		this.real = a;
+		this.im = b;
+		return this;
+	},
+
 	fromPolar: function(r, phi){
 		if (typeOf(r) == 'string'){
 			var parts = r.split(' ');
@@ -53,12 +59,6 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 			r * Math.cos(phi),
 			r * Math.sin(phi)
 		);
-	},
-
-	fromRect: function(a, b){
-		this.real = a;
-		this.im = b;
-		return this;
 	},
 
 	toPrecision: function(k){
