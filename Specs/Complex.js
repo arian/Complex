@@ -20,6 +20,13 @@ describe('Complex', function(){
 		expect(new Complex(0, -2).toString()).toEqual('-2i');
 	});
 
+	it('should make a number read-only with the finalize method', function(){
+		var z = new Complex(1, 2).finalize();
+		var w = z.add(new Complex(3, 4)); // On a new line, because z would become a new instance after the add method.
+		expect(z.toString()).toEqual('1+2i');
+		expect(w.toString()).toEqual('4+6i');
+	});
+
 	it('should calculate the magnitude of the number', function(){
 		expect(new Complex(3, 4).magnitude()).toEqual(5);
 		expect(new Complex(3, 4).abs()).toEqual(5);

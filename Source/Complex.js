@@ -49,9 +49,10 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 			r = parts[0];
 			phi = parts[1];
 		}
-		this.real = r * Math.cos(phi);
-		this.im = r * Math.sin(phi);
-		return this;
+		return this.fromRect(
+			r * Math.cos(phi),
+			r * Math.sin(phi)
+		);
 	},
 
 	fromRect: function(a, b){
@@ -74,8 +75,20 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 		);
 	},
 
+	finalize: function(){
+		this.fromRect = function(a, b){
+			return new Complex(a, b);
+		};
+		if (Object.defineProperty){
+			Object.defineProperty(this, 'real', {writable: false, value: this.real});
+			Object.defineProperty(this, 'im', {writable: false, value: this.im});
+		}
+		return this;
+	},
+
 	magnitude: function(){
-		return Math.sqrt(this.real * this.real + this.im * this.im);
+		var a = this.real, b = this.im;
+		return Math.sqrt(a * a + b * b);
 	},
 
 	angle: function(){
@@ -83,48 +96,45 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 	},
 
 	conjungate: function(){
-		this.im = -this.im;
-		return this;
+		return this.fromRect(this.real, -this.im);
 	},
 
 	negate: function(){
-		this.im = -this.im;
-		this.real = -this.real;
-		return this;
+		return this.fromRect(-this.real, -this.im);
 	},
 
-	multiply: function(number){
-		number = Complex.from(number);
+	multiply: function(z){
+		z = Complex.from(z);
+		var a = this.real, b = this.im;
 		return this.fromRect(
-			number.real * this.real - number.im * this.im,
-			this.im * number.real + number.im * this.real
+			z.real * a - z.im * b,
+			b * z.real + z.im * a
 		);
 	},
 
-	devide: function(number){
-		number = Complex.from(number);
-		var devider = (Math.pow(number.real, 2) + Math.pow(number.im, 2));
+	devide: function(z){
+		z = Complex.from(z);
+		var divident = (Math.pow(z.real, 2) + Math.pow(z.im, 2)),
+			a = this.real, b = this.im;
 		return this.fromRect(
-			(this.real * number.real + this.im * number.im) / devider,
-			(this.im * number.real - this.real * number.im) / devider
+			(a * z.real + b * z.im) / divident,
+			(b * z.real - a * z.im) / divident
 		);
 	},
 
-	add: function(number){
-		number = Complex.from(number);
-		this.real += number.real;
-		this.im += number.im;
-		return this;
+	add: function(z){
+		z = Complex.from(z);
+		return this.fromRect(this.real + z.real, this.im + z.im);
 	},
 
-	subtract: function(number){
-		this.add(Complex.from(number).multiply(-1));
-		return this;
+	subtract: function(z){
+		z = Complex.from(z);
+		return this.fromRect(this.real - z.real, this.im - z.im);
 	},
 
-	pow: function(n){
-		n = Complex.from(n);
-		var result = n.multiply(this.clone().log()).exp(); // z^w = e^(w*log(z))
+	pow: function(z){
+		z = Complex.from(z);
+		var result = z.multiply(this.clone().log()).exp(); // z^w = e^(w*log(z))
 		return this.fromRect(result.real, result.im);
 	},
 
@@ -209,11 +219,11 @@ var Complex = this.Complex = new Type('Complex', function(real, im){
 	toString: function(polar){
 		if (polar) return this.magnitude() + ' ' + this.angle();
 
-		var ret = '';
-		if (this.real) ret += this.real;
-		if (this.real && this.im || this.im < 0) ret += this.im < 0 ? '-' : '+';
-		if (this.im){
-			var absIm = Math.abs(this.im);
+		var ret = '', a = this.real, b = this.im
+		if (a) ret += a;
+		if (a && b || b < 0) ret += b < 0 ? '-' : '+';
+		if (b){
+			var absIm = Math.abs(b);
 			if (absIm != 1) ret += absIm;
 			ret += 'i';
 		}
@@ -245,9 +255,9 @@ Complex.extend({
 		return new Complex(1, 1).fromPolar(r, phi);
 	},
 
-	i: new Complex(0, 1),
+	i: new Complex(0, 1).finalize(),
 
-	one: new Complex(1, 0)
+	one: new Complex(1, 0).finalize()
 
 });
 
