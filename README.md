@@ -4,6 +4,8 @@ Complex
 Complex is a additional Type to deal with Complex Numbers in JavaScript. It provides several methods to add, multiply numbers as well as
 calculate the magnitude and angle in the complex plane.
 
+![Screenshot](https://github.com/arian/Complex/raw/master/wiki-complex.png)
+
 How To Use
 ----------
 
