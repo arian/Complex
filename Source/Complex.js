@@ -4,7 +4,7 @@ name: Complex
 description: Provides a way to use Complex Numbers in JavaScript
 
 license: MIT-style
-author: Arian Stolwijk
+authors: Arian Stolwijk
 
 requires: [Core/Core, Core/Number]
 provides: Complex
