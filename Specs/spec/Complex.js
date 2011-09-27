@@ -1,4 +1,6 @@
 
+define(['Complex/Complex'], function(Complex){
+
 describe('Complex', function(){
 
 	it('should create a complex number', function(){
@@ -8,16 +10,16 @@ describe('Complex', function(){
 	});
 
 	it('should parse a string into a complex number', function(){
-		expect(new Complex('3+4i').toString()).toEqual('3+4i');
-		expect(new Complex('3-4i').toString()).toEqual('3-4i');
-		expect(new Complex('3+4j').toString()).toEqual('3+4i');
-		expect(new Complex('5').toString()).toEqual('5');
-		expect(new Complex('1+i').toString()).toEqual('1+i');
-		expect(new Complex('i').toString()).toEqual('i');
-		expect(new Complex(1, -1).toString()).toEqual('1-i');
-		expect(new Complex(0, 0).toString()).toEqual('0');
-		expect(new Complex(0, 2).toString()).toEqual('2i');
-		expect(new Complex(0, -2).toString()).toEqual('-2i');
+		expect(Complex.from('3+4i').toString()).toEqual('3+4i');
+		expect(Complex.from('3-4i').toString()).toEqual('3-4i');
+		expect(Complex.from('3+4j').toString()).toEqual('3+4i');
+		expect(Complex.from('5').toString()).toEqual('5');
+		expect(Complex.from('1+i').toString()).toEqual('1+i');
+		expect(Complex.from('i').toString()).toEqual('i');
+		expect(Complex.from(1, -1).toString()).toEqual('1-i');
+		expect(Complex.from(0, 0).toString()).toEqual('0');
+		expect(Complex.from(0, 2).toString()).toEqual('2i');
+		expect(Complex.from(0, -2).toString()).toEqual('-2i');
 	});
 
 	it('should make a number read-only with the finalize method', function(){
@@ -58,12 +60,12 @@ describe('Complex', function(){
 	});
 
 	it('should devide a complex number by a real number', function(){
-		expect(new Complex('4+16i').devide(4) + '').toEqual('1+4i');
-		expect(new Complex('4+16i').dev(4) + '').toEqual('1+4i');
+		expect(Complex.from('4+16i').devide(4) + '').toEqual('1+4i');
+		expect(Complex.from('4+16i').dev(4) + '').toEqual('1+4i');
 	});
 
 	it('should devide a complex number by another number', function(){
-		expect(new Complex('2+8i').devide(new Complex(1, 2)) + '').toEqual('3.6+0.8i');
+		expect(Complex.from('2+8i').devide(new Complex(1, 2)) + '').toEqual('3.6+0.8i');
 	});
 
 	it('should add two complex numbers', function(){
@@ -87,7 +89,7 @@ describe('Complex', function(){
 	});
 
 	it('should take the square root of the complex number', function(){
-		var z = new Complex('1+4i').sqrt().toPrecision(10).toString();
+		var z = Complex.from('1+4i').sqrt().toPrecision(10).toString();
 		expect(z).toEqual('1.600485180+1.249621068i');
 	});
 
@@ -108,18 +110,18 @@ describe('Complex', function(){
 	});
 
 	it('it should take the natural logarithm', function(){
-		var z = new Complex('4+3i').log().toPrecision(10).toString();
+		var z = Complex.from('4+3i').log().toPrecision(10).toString();
 		expect(z).toEqual('1.609437912+0.6435011088i');
 	});
 
 	it('should take the natural logartithm with the second multiplicity', function(){
-		var n = new Complex(Math.E.pow(2)).log(2);
+		var n = Complex.from(Math.pow(Math.E, 2)).log(2);
 		expect(n.real).toEqual(2);
 		expect(n.im).toEqual(4 * Math.PI);
 	});
 
 	it('it should return the exponential', function(){
-		var z = new Complex('4+3i').exp().toPrecision(10).toString();
+		var z = Complex.from('4+3i').exp().toPrecision(10).toString();
 		expect(z).toEqual('-54.05175886+7.704891373i');
 	});
 
@@ -161,15 +163,4 @@ describe('Complex', function(){
 
 });
 
-describe('String', function(){
-
-	it('should convert a string into a complex number object', function(){
-		var z = '1+4i'.toComplex();
-		expect(z.real).toEqual(1);
-		expect(z.im).toEqual(4);
-	});
-
 });
-
-
-

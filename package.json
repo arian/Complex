@@ -1,0 +1,27 @@
+{
+	"name": "Complex",
+	"homepage": "http://github.com/arian/Complex",
+	"version": "2.0",
+	"description": "Do calculations with Complex numbers",
+	"keywords": ["Complex Numbers", "Numbers", "Math", "Calculus"],
+	"author": "Arian Stolwijk",
+	"maintainers": [{
+		"name": "Arian Stolwijk",
+		"web": "http://aryweb.nl"
+	}],
+	"bugs": "https://github.com/arian/Complex/issues",
+	"licenses": [{
+		"type": "MIT",
+		"url": "http://www.opensource.org/licenses/mit-license.php"
+	}],
+	"repositories": [{
+		"type": "git",
+		"url": "git://github.com/mootools/Base.git"
+	}],
+	"implements": ["CommonJS/Packages/1.0", "CommonJS/Modules/AsynchronousDefinition"],
+	"directories": {
+		"lib": "Source"
+	},
+	"main": "Source/Complex",
+	"icon": "https://github.com/arian/Complex/raw/master/wiki-complex.png"
+}

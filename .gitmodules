@@ -1,3 +1,6 @@
-[submodule "Specs/Runner"]
-	path = Specs/Runner
-	url = http://github.com/mootools/mootools-runner.git
+[submodule "Specs/requirejs"]
+	path = Specs/requirejs
+	url = https://github.com/jrburke/requirejs.git
+[submodule "Specs/jasmine"]
+	path = Specs/jasmine
+	url = https://github.com/pivotal/jasmine.git
