@@ -1,7 +1,7 @@
 {
 	"name": "Complex",
 	"homepage": "http://github.com/arian/Complex",
-	"version": "2.0",
+	"version": "2.0.0",
 	"description": "Do calculations with Complex numbers",
 	"keywords": ["Complex Numbers", "Numbers", "Math", "Calculus"],
 	"author": "Arian Stolwijk",
