@@ -16,7 +16,7 @@
 	}],
 	"repositories": [{
 		"type": "git",
-		"url": "git://github.com/mootools/Base.git"
+		"url": "git://github.com/arian/Complex.git"
 	}],
 	"implements": ["CommonJS/Packages/1.0", "CommonJS/Modules/AsynchronousDefinition"],
 	"directories": {
