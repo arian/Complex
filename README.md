@@ -9,16 +9,7 @@ calculate the magnitude and angle in the complex plane.
 How To Use
 ----------
 
-Just include the file Complex.js into your page or require it in your ssjs script.
-
-
-Build
------
-
-Build via [Packager](http://github.com/kamicane/packager), requires MooTools Core to be registered to Packager already _(ty cpojer)_
-
-	./packager register /path/to/Complex
-	./packager build Complex/* > Complex
+Complex uses the [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) format. You could use any compatible AMD loader, either on Node.js or in the browser to use this Complex module. I'd recommend [Require.JS](http://requirejs.org/)
 
 
 API Documentation
@@ -26,12 +17,24 @@ API Documentation
 
 ### Complex constructor:
 
-	var z = new Complex(real[, im]);
+	var z = new Complex(real im);
 
 #### Arguments:
 
 1. real (number) the real part of the number
 2. im (number) the imaginary part of the number
+
+
+### Function: Complex.from
+
+A in line function like Number.from.
+
+	var z = Complex.from(real[, im]);
+
+#### Arguments:
+
+1. real (number) the real part of the number
+2. im (number, *optional*) the imaginary part of the number
 
 Or
 
@@ -39,19 +42,9 @@ Or
 
 #### Examples:
 
-	var z = new Complex(2, 4);
-	var z = new Complex('2+5i');
-
-
-### Function: Complex.from
-
-A in line function like Number.from.
-
-	var z = Complex.from(real, im);
-
-#### Arguments:
-
-The same as the Complex constructor.
+	var z = Complex.from(2, 4);
+	var z = Complex.from(5);
+	var z = Complex.from('2+5i');
 
 
 ### Function: Complex.fromPolar
@@ -342,60 +335,3 @@ Checks if the real and imaginary components are equal to the passed in compelex 
 
 	new Complex(1, 4).equals(new Complex(1, 4)); // true
 	new Complex(1, 3).equals(new Complex(1, 3)); // false
-
-
-Additions to the Number object
-------------------------------
-
-Each method of the Complex object is added to the Number object, so it is easy to use them together.
-
-#### Example:
-
-	(3).add(new Complex(2, 4)).toString(); // 5+4i
-
-### Method: toComplex
-
-Returns a Complex instance where the real component is the value of the number.
-
-	myNumber.toComplex();
-
-#### Example:
-
-	(3).toComplex().add(new Complex(3, 4)).toString(); // 6+4i
-
-
-### Function: Number.from
-
-Number.from accepts Complex instances. It will return the real component.
-
-#### Example:
-
-	Number.from(new Complex(3, 4)); // 3
-
-
-Additions to the Math object
-----------------------------
-
-The following functions are added to the Math object:
-
-- Math.sinh - calculates the hyperbolic sine of a (real) number
-- Math.cosh - calculates the hyperbolic cosine of a (real) number
-- Math.tanh - calculates the hyperbolic tangent of a (real) number
-
-
-Additions to the Strnig object
-------------------------------
-
-String implements the following methods:
-
-### Method: toComplex
-
-Parses a string like `3+5i` into a Complex instance.
-
-	myString.toComplex();
-
-#### Example:
-
-	'4+2i'.toComplex(); // a complex instance with the real component = 4 and the imaginary component = 2
-
-
