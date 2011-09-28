@@ -14,10 +14,10 @@
 		"type": "MIT",
 		"url": "http://www.opensource.org/licenses/mit-license.php"
 	}],
-	"repositories": [{
+	"repository": {
 		"type": "git",
-		"url": "git://github.com/arian/Complex.git"
-	}],
+		"url": "http://github.com/arian/Complex"
+	},
 	"implements": ["CommonJS/Packages/1.0", "CommonJS/Modules/AsynchronousDefinition"],
 	"directories": {
 		"lib": "Source"
