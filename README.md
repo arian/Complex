@@ -11,6 +11,17 @@ How To Use
 
 Complex uses the [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) format. You could use any compatible AMD loader, either on Node.js or in the browser to use this Complex module. I'd recommend [Require.JS](http://requirejs.org/)
 
+NPM / CPM
+---------
+
+You can get this package through NPM or [CPM](http://packages.dojofoundation.org):
+
+    npm install Complex
+	
+or 
+
+	cpm install Complex
+
 
 API Documentation
 -----------------
