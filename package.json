@@ -1,7 +1,7 @@
 {
 	"name": "Complex",
 	"homepage": "http://github.com/arian/Complex",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Do calculations with Complex numbers",
 	"keywords": ["Complex Numbers", "Numbers", "Math", "Calculus"],
 	"author": "Arian Stolwijk",
@@ -23,5 +23,8 @@
 		"lib": "Source"
 	},
 	"main": "Source/Complex",
-	"icon": "https://github.com/arian/Complex/raw/master/wiki-complex.png"
+	"icon": "https://github.com/arian/Complex/raw/master/wiki-complex.png",
+	"dependencies": {
+		"amd-loader": ">=0.0.3"
+	}
 }

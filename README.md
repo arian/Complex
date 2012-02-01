@@ -22,6 +22,18 @@ or
 
 	cpm install Complex
 
+### Node.js
+
+For using Complex in Node.js, you need `amd-loader`.
+This will be automatically installed, because it's a dependency of Complex.
+Otherwise this can be installed by running `npm install amd-loader`.
+
+```js
+require('amd-loader');
+var Complex = require('Complex');
+
+console.log(new Complex(3, 4).abs()); // 5
+```
 
 API Documentation
 -----------------
