@@ -154,7 +154,7 @@ Very useful when a complex instance should stay constant. For example the Comple
 
 Calculates the magnitude of the complex number
 
-	myComplex.maginude();
+	myComplex.magnitude();
 
 #### Alias:
 
@@ -163,7 +163,7 @@ Calculates the magnitude of the complex number
 
 ### Method: angle
 
-Calculates the angle with the real axis.
+Calculates the angle with respect to the real axis, in radians.
 
 	myComplex.angle();
 
@@ -173,11 +173,11 @@ Calculates the angle with the real axis.
 - phase
 
 
-### Method: conjungate
+### Method: conjugate
 
-Calculates the conjungate of the complex number (multiplies the imaginary part with -1)
+Calculates the conjugate of the complex number (multiplies the imaginary part with -1)
 
-	myComplex.conjungate();
+	myComplex.conjugate();
 
 
 ### Method: negate
@@ -202,11 +202,11 @@ Multiplies the number with a real or complex number
 - mult
 
 
-### Method: devide
+### Method: divide
 
-Devides the number by a real or complex number
+Divides the number by a real or complex number
 
-	myComplex.devide(z);
+	myComplex.divide(z);
 
 #### Arguments:
 
