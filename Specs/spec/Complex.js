@@ -36,6 +36,8 @@ describe('Complex', function(){
 
 	it('should calculate the angle between the real and the im vectors', function(){
 		expect(new Complex(1, 1).angle()).toEqual(Math.PI / 4);
+		expect(new Complex(-1, -1).angle()).toEqual(-3 * Math.PI / 4);
+		expect(new Complex(0, 1).angle()).toEqual(Math.PI / 2);
 		expect(new Complex(1, 0.5 * Math.sqrt(4 / 3)).angle()).toEqual(Math.PI / 6);
 		expect(new Complex(1, 0.5 * Math.sqrt(4 / 3)).arg()).toEqual(Math.PI / 6);
 	});

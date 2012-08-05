@@ -57,7 +57,7 @@ var prototype = Complex.prototype = {
 	},
 
 	angle: function(){
-		return Math.atan(this.im / this.real);
+		return Math.atan2(this.im, this.real);
 	},
 
 	conjungate: function(){
