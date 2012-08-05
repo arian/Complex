@@ -40,8 +40,8 @@ describe('Complex', function(){
 		expect(new Complex(1, 0.5 * Math.sqrt(4 / 3)).arg()).toEqual(Math.PI / 6);
 	});
 
-	it('should return the conjungate', function(){
-		expect(new Complex(1, 3).conjungate().toString()).toEqual('1-3i');
+	it('should return the conjugate', function(){
+		expect(new Complex(1, 3).conjugate().toString()).toEqual('1-3i');
 		expect(new Complex(1, 3).conj().toString()).toEqual('1-3i');
 	});
 
@@ -59,13 +59,13 @@ describe('Complex', function(){
 		expect(n).toEqual('-5+14i');
 	});
 
-	it('should devide a complex number by a real number', function(){
-		expect(Complex.from('4+16i').devide(4) + '').toEqual('1+4i');
+	it('should divide a complex number by a real number', function(){
+		expect(Complex.from('4+16i').divide(4) + '').toEqual('1+4i');
 		expect(Complex.from('4+16i').dev(4) + '').toEqual('1+4i');
 	});
 
-	it('should devide a complex number by another number', function(){
-		expect(Complex.from('2+8i').devide(new Complex(1, 2)) + '').toEqual('3.6+0.8i');
+	it('should divide a complex number by another number', function(){
+		expect(Complex.from('2+8i').divide(new Complex(1, 2)) + '').toEqual('3.6+0.8i');
 	});
 
 	it('should add two complex numbers', function(){

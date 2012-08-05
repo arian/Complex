@@ -60,7 +60,7 @@ var prototype = Complex.prototype = {
 		return Math.atan(this.im / this.real);
 	},
 
-	conjungate: function(){
+	conjugate: function(){
 		return this.fromRect(this.real, -this.im);
 	},
 
@@ -77,7 +77,7 @@ var prototype = Complex.prototype = {
 		);
 	},
 
-	devide: function(z){
+	divide: function(z){
 		z = Complex.from(z);
 		var divident = (Math.pow(z.real, 2) + Math.pow(z.im, 2)),
 			a = this.real, b = this.im;
@@ -206,9 +206,9 @@ var alias = {
 	abs: 'magnitude',
 	arg: 'angle',
 	phase: 'angle',
-	conj: 'conjungate',
+	conj: 'conjugate',
 	mult: 'multiply',
-	dev: 'devide',
+	dev: 'divide',
 	sub: 'subtract'
 };
 
