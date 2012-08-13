@@ -1,46 +1,57 @@
 Complex
 =======
 
-Complex is a additional Type to deal with Complex Numbers in JavaScript. It provides several methods to add, multiply numbers as well as
-calculate the magnitude and angle in the complex plane.
+Complex is a additional Type to deal with Complex Numbers in JavaScript. It
+provides several methods to add, multiply numbers as well as calculate the
+magnitude and angle in the complex plane.
 
 ![Screenshot](https://github.com/arian/Complex/raw/master/wiki-complex.png)
 
-How To Use
-----------
+Node
+----
 
-Complex uses the [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) format. You could use any compatible AMD loader, either on Node.js or in the browser to use this Complex module. I'd recommend [Require.JS](http://requirejs.org/)
-
-NPM / CPM
----------
-
-You can get this package through NPM or [CPM](http://packages.dojofoundation.org):
+You can get this package with NPM:
 
     npm install Complex
-	
-or 
-
-	cpm install Complex
-
-### Node.js
-
-For using Complex in Node.js, you need `amd-loader`.
-This will be automatically installed, because it's a dependency of Complex.
-Otherwise this can be installed by running `npm install amd-loader`.
 
 ```js
-require('amd-loader');
 var Complex = require('Complex');
-
 console.log(new Complex(3, 4).abs()); // 5
 ```
+
+Browser
+-------
+
+Complex can be built for the browser with [wrapup](https://github.com/kamicane/wrapup)
+or other tools that can generate browser JS from Node packages.
+
+Testing
+-------
+
+Testing is done with Mocha and Expect.js:
+
+	# install dependencies
+	npm install
+	# run the tests in node
+	./node_modules/.bin/mocha test/Complex.js
+
+or testing in the browser:
+
+	# install dependencies
+	npm install
+	# run a small node server
+	node ./test/server.js
+	# run tests
+	google-chrome http://localhost:3000
 
 API Documentation
 -----------------
 
 ### Complex constructor:
 
-	var z = new Complex(real im);
+```js
+var z = new Complex(real im);
+```
 
 #### Arguments:
 
@@ -52,7 +63,9 @@ API Documentation
 
 A in line function like Number.from.
 
-	var z = Complex.from(real[, im]);
+```js
+var z = Complex.from(real[, im]);
+```
 
 #### Arguments:
 
@@ -65,16 +78,20 @@ Or
 
 #### Examples:
 
-	var z = Complex.from(2, 4);
-	var z = Complex.from(5);
-	var z = Complex.from('2+5i');
+```js
+var z = Complex.from(2, 4);
+var z = Complex.from(5);
+var z = Complex.from('2+5i');
+```
 
 
 ### Function: Complex.fromPolar
 
 Creates a complex instance from a polar representation: `r*e^(phi*i) = r (cos(phi) + i sin(phi))`
 
-	var z = Complex.fromPolar(r, phi);
+```js
+var z = Complex.fromPolar(r, phi);
+```
 
 #### Arguments:
 
@@ -86,21 +103,27 @@ Creates a complex instance from a polar representation: `r*e^(phi*i) = r (cos(ph
 
 A instance of the imaginary unit `i`
 
-	var i = Complex.i;
+```js
+var i = Complex.i;
+```
 
 
 ### Constant: Complex.one
 
 A instance for the real number `1`
 
-	var one = Complex.one;
+```js
+var one = Complex.one;
+```
 
 
 ### Method: fromRect
 
 Sets the real and imaginary properties a and b from `a + bi`
 
-	myComplex.fromRect(real, im);
+```js
+myComplex.fromRect(real, im);
+```
 
 #### Arguments:
 
@@ -112,7 +135,9 @@ Sets the real and imaginary properties a and b from `a + bi`
 
 Sets the a and b in `a + bi` from a polar representation.
 
-	myComplex.fromPolar(r, phi);
+```js
+myComplex.fromPolar(r, phi);
+```
 
 #### Arguments:
 
@@ -124,7 +149,9 @@ Sets the a and b in `a + bi` from a polar representation.
 
 Sets the precision of the numbers. Similar to Number.prototype.toPrecision. Useful befor printing the number with the toString method.
 
-	myComplex.toPrecision(k);
+```js
+myComplex.toPrecision(k);
+```
 
 #### Arguments:
 
@@ -135,7 +162,9 @@ Sets the precision of the numbers. Similar to Number.prototype.toPrecision. Usef
 
 Formats a number using fixed-point notation. Similar to Number.prototype.toFixed. Useful before printing the number with the toString method.
 
-	myComplex.toFixed(k);
+```js
+myComplex.toFixed(k);
+```
 
 #### Arguments:
 
@@ -147,14 +176,18 @@ Formats a number using fixed-point notation. Similar to Number.prototype.toFixed
 Finalizes the instance. The number will not change and any other method call will return a new instance.
 Very useful when a complex instance should stay constant. For example the Complex.i variable is a finalized instance.
 
-	myComplex.finalize();
+```js
+myComplex.finalize();
+```
 
 
 ### Method: magnitude
 
 Calculates the magnitude of the complex number
 
-	myComplex.magnitude();
+```js
+myComplex.magnitude();
+```
 
 #### Alias:
 
@@ -165,7 +198,9 @@ Calculates the magnitude of the complex number
 
 Calculates the angle with respect to the real axis, in radians.
 
-	myComplex.angle();
+```js
+myComplex.angle();
+```
 
 #### Aliases
 
@@ -177,21 +212,27 @@ Calculates the angle with respect to the real axis, in radians.
 
 Calculates the conjugate of the complex number (multiplies the imaginary part with -1)
 
-	myComplex.conjugate();
+```js
+myComplex.conjugate();
+```
 
 
 ### Method: negate
 
 Negates the number (multiplies both the real and imaginary part with -1)
 
-	myComplex.negate();
+```js
+myComplex.negate();
+```
 
 
 ### Method: multiply
 
 Multiplies the number with a real or complex number
 
-	myComplex.multiply(z);
+```js
+myComplex.multiply(z);
+```
 
 #### Arguments:
 
@@ -206,7 +247,9 @@ Multiplies the number with a real or complex number
 
 Divides the number by a real or complex number
 
-	myComplex.divide(z);
+```js
+myComplex.divide(z);
+```
 
 #### Arguments:
 
@@ -221,7 +264,9 @@ Divides the number by a real or complex number
 
 Adds a real or complex number
 
-	myComplex.add(z);
+```js
+myComplex.add(z);
+```
 
 #### Arguments:
 
@@ -232,7 +277,9 @@ Adds a real or complex number
 
 Subtracts a real or complex number
 
-	myComplex.subtract(z);
+```js
+myComplex.subtract(z);
+```
 
 #### Arguments:
 
@@ -247,7 +294,9 @@ Subtracts a real or complex number
 
 Returns the base to the exponent
 
-	myComplex.pow(z);
+```js
+myComplex.pow(z);
+```
 
 #### Arguments:
 
@@ -258,14 +307,18 @@ Returns the base to the exponent
 
 Returns the square root
 
-	myComplex.sqrt();
+```js
+myComplex.sqrt();
+```
 
 
 ### Method: log
 
 Returns the natural logarithm (base `E`)
 
-	myComplex.log([k]);
+```js
+myComplex.log([k]);
+```
 
 #### Arguments:
 
@@ -276,79 +329,101 @@ Returns the natural logarithm (base `E`)
 
 Calculates the `e^z` where the base is `E` and the exponential the complex number.
 
-	myComplex.exp();
+```js
+myComplex.exp();
+```
 
 
 ### Method: sin
 
 Calculates the sine of the complex number
 
-	myComplex.sin();
+```js
+myComplex.sin();
+```
 
 
 ### Method: cos
 
 Calculates the cosine of the complex number
 
-	myComplex.cos();
+```js
+myComplex.cos();
+```
 
 
 ### Method: tan
 
 Calculates the tangent of the complex number
 
-	myComplex.tan();
+```js
+myComplex.tan();
+```
 
 
 ### Method: sinh
 
 Calculates the hyperbolic sine of the complex number
 
-	myComplex.sinh();
+```js
+myComplex.sinh();
+```
 
 
 ### Method: cosh
 
 Calculates the hyperbolic cosine of the complex number
 
-	myComplex.cosh();
+```js
+myComplex.cosh();
+```
 
 
 ### Method: tanh
 
 Calculates the hyperbolic tangent of the complex number
 
-	myComplex.tanh();
+```js
+myComplex.tanh();
+```
 
 
 ### Method: clone
 
 Returns a new Complex instance with the same real and imaginary properties
 
-	myComplex.clone();
+```js
+myComplex.clone();
+```
 
 
 ### Method: toString
 
 Returns a string representation of the complex number
 
-	myComplex.toString();
+```js
+myComplex.toString();
+```
 
 
 #### Examples:
 
-	new Complex(1, 2).toString(); // 1+2i
-	new Complex(0, 1).toString(); // i
-	new Complex(4, 0).toString(); // 4
-	new Complex(1, 1).toString(); // 1+i
-	'my Complex Number is: ' + (new Complex(3, 5)); // 'my Complex Number is: 3+5i
+```js
+new Complex(1, 2).toString(); // 1+2i
+new Complex(0, 1).toString(); // i
+new Complex(4, 0).toString(); // 4
+new Complex(1, 1).toString(); // 1+i
+'my Complex Number is: ' + (new Complex(3, 5)); // 'my Complex Number is: 3+5i
+```
 
 
 ### Method: Equals
 
 Checks if the real and imaginary components are equal to the passed in compelex components.
 
-	myComplex.equals(z);
+```js
+myComplex.equals(z);
+```
 
 ### Arguments:
 
@@ -356,5 +431,7 @@ Checks if the real and imaginary components are equal to the passed in compelex 
 
 ### Examples:
 
-	new Complex(1, 4).equals(new Complex(1, 4)); // true
-	new Complex(1, 3).equals(new Complex(1, 3)); // false
+```js
+new Complex(1, 4).equals(new Complex(1, 4)); // true
+new Complex(1, 3).equals(new Complex(1, 3)); // false
+```

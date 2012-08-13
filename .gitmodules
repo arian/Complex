@@ -1,6 +1,0 @@
-[submodule "Specs/requirejs"]
-	path = Specs/requirejs
-	url = https://github.com/jrburke/requirejs.git
-[submodule "Specs/jasmine"]
-	path = Specs/jasmine
-	url = https://github.com/pivotal/jasmine.git

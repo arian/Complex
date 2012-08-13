@@ -1,7 +1,7 @@
 {
 	"name": "Complex",
 	"homepage": "http://github.com/arian/Complex",
-	"version": "2.0.1",
+	"version": "3.0.0",
 	"description": "Do calculations with Complex numbers",
 	"keywords": ["Complex Numbers", "Numbers", "Math", "Calculus"],
 	"author": "Arian Stolwijk",
@@ -18,13 +18,12 @@
 		"type": "git",
 		"url": "http://github.com/arian/Complex"
 	},
-	"implements": ["CommonJS/Packages/1.0", "CommonJS/Modules/AsynchronousDefinition"],
-	"directories": {
-		"lib": "Source"
-	},
-	"main": "Source/Complex",
+	"main": "lib/Complex",
 	"icon": "https://github.com/arian/Complex/raw/master/wiki-complex.png",
-	"dependencies": {
-		"amd-loader": ">=0.0.3"
+	"devDependencies": {
+		"mocha": "1.3",
+		"expect.js": "0.1",
+		"express": "3",
+		"wrapup": "0.9"
 	}
 }
