@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/arian/Complex.png)](http://travis-ci.org/arian/Complex)
 Complex
 =======
 
