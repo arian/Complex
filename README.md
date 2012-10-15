@@ -433,5 +433,5 @@ myComplex.equals(z);
 
 ```js
 new Complex(1, 4).equals(new Complex(1, 4)); // true
-new Complex(1, 3).equals(new Complex(1, 3)); // false
+new Complex(1, 4).equals(new Complex(1, 3)); // false
 ```
