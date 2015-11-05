@@ -50,7 +50,7 @@ API Documentation
 ### Complex constructor:
 
 ```js
-var z = new Complex(real im);
+var z = new Complex(real, im);
 ```
 
 #### Arguments:
