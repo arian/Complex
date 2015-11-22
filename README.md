@@ -147,7 +147,7 @@ myComplex.fromPolar(r, phi);
 
 ### Method: toPrecision
 
-Sets the precision of the numbers. Similar to Number.prototype.toPrecision. Useful befor printing the number with the toString method.
+Sets the precision of the numbers. Similar to Number.prototype.toPrecision. Useful before printing the number with the toString method.
 
 ```js
 myComplex.toPrecision(k);
